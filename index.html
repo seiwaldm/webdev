@@ -1443,7 +1443,7 @@ Personen.
         <ul class="bullets">
           <li>Gleiche Sprache, gleiche Engine (V8 aus Chrome), andere Umgebung.</li>
           <li>Node.js darf Dateien lesen und schreiben, Server starten und andere Programme aufrufen. Eine Webseite (DOM) gibt es dort dafür nicht.</li>
-          <li>Damit wird JavaScript zur serverseitigen Sprache. Auch fast alle Werkzeuge der Webentwicklung laufen auf Node.js: Vite, pnpm, esbuild …</li>
+          <li>Damit wird JavaScript zur serverseitigen Sprache. Auch fast alle Werkzeuge der Webentwicklung laufen auf Node.js: Vite, pnpm, TypeScript …</li>
           <li>Installation über <a href="https://nodejs.org/" target="_blank" rel="noopener">nodejs.org</a>, am besten die LTS-Version (Long Term Support).</li>
         </ul>
       </div>
@@ -1451,6 +1451,44 @@ Personen.
         <svg id="node-fig" viewBox="0 0 560 290" role="img" aria-label="Links der Browser: Die JavaScript-Engine sitzt in einer Sandbox und darf nur auf die Seite (DOM) und das Netzwerk zugreifen, nicht auf Dateien und Prozesse. Rechts Node.js: dieselbe Engine darf auf Netzwerk, Dateien und Prozesse zugreifen, ein DOM gibt es nicht."></svg>
         <figcaption class="fig-cap">DOM = die Seite im Browser mit all ihren Elementen. Blau: erlaubt. Rot: geht nicht.</figcaption>
         <div class="fig-tools"><button class="btn" type="button" data-replay>Nochmal abspielen</button></div>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-slug="vite" data-chapter="3" data-title="Vite">
+  <div class="slide-inner">
+    <header class="slide-head"><h2>Vite: entwickeln und für den Browser bauen</h2></header>
+    <div class="slide-body two">
+      <div class="col">
+        <p class="lead"><mark>Vite</mark> verbindet die Dateien deines Projekts mit dem Browser. Es stellt beim Entwickeln Änderungen sofort bereit und erstellt für die Veröffentlichung optimierte Dateien.</p>
+        <ul class="bullets">
+          <li>Der Entwicklungsserver startet die App lokal im Browser.</li>
+          <li>Hot Module Replacement (HMR) zeigt Codeänderungen meist sofort, ohne die ganze Seite neu zu laden.</li>
+          <li>Vite verarbeitet unter anderem TypeScript- und Svelte-Dateien, die der Browser nicht direkt versteht.</li>
+          <li>Beim Build werden die benötigten Dateien für den Webserver vorbereitet und gebündelt.</li>
+        </ul>
+        <aside class="note">
+          <span class="tag">Einordnung</span>
+          <p>Vite ist weder ein Frontend-Framework noch ein Paketmanager. Es übernimmt den Entwicklungsserver und den Build.</p>
+        </aside>
+      </div>
+      <figure class="fig">
+        <div class="cards c2">
+          <div class="card">
+            <span class="tag">Entwickeln</span>
+            <h3>Code &rarr; Browser</h3>
+            <p>Vite liefert Module an den Browser und aktualisiert geänderte Teile direkt.</p>
+            <p class="impl"><span class="tag">lokaler Entwicklungsserver</span>kurze Feedback-Schleife</p>
+          </div>
+          <div class="card">
+            <span class="tag">Veröffentlichen</span>
+            <h3>Code &rarr; Build</h3>
+            <p>Vite verarbeitet und bündelt die App zu Dateien, die ein Webserver ausliefern kann.</p>
+            <p class="impl"><span class="tag">Produktions-Build</span>optimierte Ausgabe</p>
+          </div>
+        </div>
+        <figcaption class="fig-cap">Ein Projekt, zwei Aufgaben: Vite unterstützt den Entwicklungsalltag und bereitet die Anwendung für den Einsatz vor.</figcaption>
       </figure>
     </div>
   </div>
@@ -1483,6 +1521,38 @@ Personen.
         </div>
         <svg id="pn-svg" viewBox="0 0 540 290" role="img" aria-label="Drei Projekte verwenden svelte, vite und typescript. Mit npm hat jedes Projekt eigene Kopien, neun insgesamt. Mit pnpm liegen die drei Pakete einmal im zentralen Speicher, die Projekte verlinken nur darauf."></svg>
         <figcaption class="fig-cap" id="pn-cap"></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="slide" data-slug="typescript" data-chapter="3" data-title="TypeScript">
+  <div class="slide-inner">
+    <header class="slide-head"><h2>TypeScript: JavaScript mit zusätzlichen Typen</h2></header>
+    <div class="slide-body two">
+      <div class="col">
+        <p class="lead"><mark>TypeScript</mark> ergänzt JavaScript um Typen. So kann das Werkzeug schon beim Schreiben auf viele falsche Werte und Aufrufe hinweisen.</p>
+        <ul class="bullets">
+          <li>Typen beschreiben, welche Werte eine Variable oder Funktion erwartet und zurückgibt.</li>
+          <li>Der Editor kann dadurch Fehler markieren und passende Vorschläge machen.</li>
+          <li>Browser führen JavaScript aus, nicht TypeScript. Beim Bauen werden die Typangaben entfernt und JavaScript-Dateien erzeugt.</li>
+          <li>Vite verarbeitet TypeScript beim Entwickeln; die vollständige Typprüfung läuft separat, zum Beispiel mit <code>tsc --noEmit</code>.</li>
+        </ul>
+      </div>
+      <figure class="fig">
+        <div class="code-wrap">
+          <span class="code-title">TypeScript: Eingaben und Ergebnis haben einen Typ</span>
+          <pre class="code"><span class="k">function</span> begruesse(name: <span class="k">string</span>): <span class="k">string</span> {
+  <span class="k">return</span> <span class="s">`Hallo, ${name}!`</span>;
+}
+
+begruesse(<span class="s">'Ada'</span>); <span class="c">// gültig</span>
+begruesse(42);       <span class="c">// Typfehler</span></pre>
+        </div>
+        <aside class="note">
+          <span class="tag">Wichtig</span>
+          <p>Die Typen helfen während der Entwicklung. Sie sind zur Laufzeit nicht mehr vorhanden und ersetzen keine Prüfung von Daten, die von außen kommen.</p>
+        </aside>
       </figure>
     </div>
   </div>
